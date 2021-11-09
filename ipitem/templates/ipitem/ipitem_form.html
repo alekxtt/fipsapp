@@ -1,0 +1,72 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<!-- Main Section -->
+<main>
+  <section id="screen--wrapper">
+    <div id="form-wrapper">
+      <a href='{% url "index:index" %}'>Обратно в профиль пользователя</a>
+    </div>
+  {% if type_request == 'edit' %}
+  <form method='POST' action="{% url 'ipitem:edit_ip' ipitem.id %}">
+    {% csrf_token %}
+    {% for field in form %}
+    <div id="form-wrapper-reg">
+      <label for="formInput#text">{{ field.label }} </label>
+      {{ field }}
+    </div>
+    {% endfor %}
+  </form>
+    <div id="form-wrapper-reg">
+    <input type="submit" value="Подтвердить данные">
+  </div>
+  {% elif type_request == 'new' %}
+  <form method='POST' action="{% url 'ipitem:new_ip' %}">
+    {% csrf_token %}
+    {% for field in form %}
+    <div id="form-wrapper-reg">
+      <label for="formInput#text">{{ field.label }} </label>
+      {{ field }}
+    </div>
+    {% endfor %}
+  </form>
+    <div id="form-wrapper-reg">
+    <input type="submit" value="Подтвердить данные">
+  </div>
+  <div id="form-wrapper">
+    <a href='{% url "ipitem:fips_pars" %}'>Нажмите, если вы знаете не все данные патента. От вас потребуется внести минимально необходимую информацию, а остальное мы найдём сами.</a>
+  </div>
+  {% endif %}
+
+
+    {% if type_request == 'pars' %}
+
+    
+
+
+    <form method='POST' action="{% url 'ipitem:fips_pars' %}">
+      {% csrf_token %}
+          <div id="form-wrapper-reg">
+            <label for="formInput#text">{{ form.number.label }} </label>
+            {{ form.number }}
+          </div>
+          <div id="form-wrapper-reg">
+            <label for="formInput#text">{{ form.type_of_item.label }} </label>
+            {{ form.type_of_item }}
+          </div>
+          <div id="form-wrapper-reg">
+            <label for="formInput#text">{{ form.signatory.label }} </label>
+            {{ form.signatory }}
+          </div>
+          <div id="form-wrapper-reg">
+          <input type="submit" value="Подтвердить данные">
+        </div>
+    </form>
+    {% else %}
+
+    {% endif %}
+  </section>
+</main>
+
+
+{% endblock content %}

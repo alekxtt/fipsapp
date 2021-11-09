@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<!-- Main Section -->
+<main>
+    <section id="screen--wrapper">
+    <div id="form-wrapper">
+    ДЕРЖИТЕ ПОД КОНТРОЛЕМ ВАШУ ИНТЕЛЛЕКТУАЛЬНУЮ СОБСТВЕННОСТЬ
+    </div>
+    <div id="index-wrapper"><a href="{% url 'profile:profile_create' %}">РЕГИСТРИРУЙТЕСЬ!</a></div>
+    <div id="form-wrapper-2"><a href="{% url 'profile:login' %}">УЖЕ ЗАРЕГИСТРИРОВАЛИСЬ? ВОЙДИТЕ В АККАУНТ!</a></div>
+    </section>
+</main>
+{% endblock content %}

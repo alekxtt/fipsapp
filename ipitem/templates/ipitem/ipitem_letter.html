@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<!-- Main Section -->
+<main>
+    <section id="screen--wrapper-letter">
+    <div class="form-wrapper-letter-header">{{ title }} <br>
+    {{ address }}</div>
+    <div id="form-wrapper-letter-body">{{ beginnig }}{{ period }}{{ continue }}{{ ipitem.number }}.</div>
+    <div>{{ sign }}{{ ipitem.signatory }}</div>
+    <div style="text-indent: 12%">{{ date_for_sign }}</div>
+    </section>
+</main>
+
+
+{% endblock content %}

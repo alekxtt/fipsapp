@@ -1,0 +1,1 @@
+web: gunicorn fipsapp.wsgi --log-file -

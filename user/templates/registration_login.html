@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<!-- Main Section -->
+{% if page_type == 'registration' %}
+<main>
+  <section id="screen--wrapper">
+  <div id="form-wrapper">
+    <a href='{% url "index:index" %}'>На главную</a>
+  </div>
+  <form method='POST' action="{% url 'profile:profile_create' %}">
+    {% csrf_token %}
+    {% for field in form %}
+    <div id="form-wrapper-reg">
+      <label for="formInput#text">{{ field.label }} </label>
+      {{ field }}
+      {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </div>
+    {% endfor %}
+    <div id="form-wrapper-reg">
+    <input type="submit" value="Зарегистрироваться">
+    </div>
+  </form>
+  </section>
+
+
+{% elif page_type == 'login' %}
+
+<main>
+  <section id="screen--wrapper">
+    <div id="form-wrapper">
+      <a href='{% url "index:index" %}'>На главную</a>
+    </div>
+  <form method='POST' action="{% url 'profile:login' %}">
+    {% csrf_token %}
+      <!-- Input:Username -->
+      <div id="index-wrapper">
+        <label for="formInput#text">Имя пользователя: </label>
+        <input
+          class="input input--text"
+          id="formInput#text"
+          type="text"
+          name="username"
+          placeholder="Введите имя пользователя"
+        />
+      </div>
+
+      <!-- Input:Password -->
+      <div id="index-wrapper">
+        <label for="formInput#password">Пароль: </label>
+        <input
+          class="input input--password"
+          id="formInput#passowrd"
+          type="password"
+          name="password"
+          placeholder="••••••••"
+        />
+      </div>
+      <div  id="form-wrapper-2">
+        <input class="btn btn--sub btn--lg" type="submit" value="Войти" />
+      </div>
+      <div  id="form-wrapper">
+        <a href="{% url 'reset_password' %}">Забыли пароль?</a>
+      </div>
+      </form>
+      <div id="index-wrapper">
+      <p>Ещё не зарегистрировались?</p>
+      <a href="{% url 'profile:profile_create' %}">Зарегистрироваться</a>
+      </div>
+      </div>
+    
+  </form>
+</section>  
+</main>
+
+{% endif %}
+
+{% endblock content %}

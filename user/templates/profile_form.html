@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<!-- Main Section -->
+<main>
+  <section id="screen--wrapper">
+    <div id="form-wrapper">
+      <a href='{% url "index:index" %}'>Обратно в профиль пользователя</a>
+    </div>
+  <form method='POST' action="{% url 'profile:profile_edit' %}">
+      {% csrf_token %}
+      {% for field in form %}
+      <div id="form-wrapper-reg">
+        <label for="formInput#text">{{ field.label }} </label>
+        {{ field }} <br><br>
+        {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </div>
+      {% endfor %}
+      <input type="submit" value="Подтвердить данные">
+  </form>
+  </section>
+</main>
+
+
+{% endblock content %}

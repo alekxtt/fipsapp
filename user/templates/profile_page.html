@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<!-- Main Section -->
+<main>
+<section id="screen--wrapper">
+<div id="index-wrapper">
+    <p>{{ profile.name }}</p>
+    <p>{{ profile.description }}</p>
+</div>
+<div id="form-wrapper-2"><b>Добавленные объекты интеллектуальной собственности</b></div>
+<div id="index-wrapper">
+    {% for item in ipitems %}
+    {{item.number}} | {{item.title}} | <a href='{% url "ipitem:ip_info" item.id %}' target="_blank">Подробно</a> |
+     <a href='{% url "ipitem:edit_ip"  item.id %}' target="_blank">Редактировать</a> |
+     <a href='{% url "ipitem:delete_ip_confirmation" item.id %}' target="_blank">Удалить</a> |
+     <a href='{% url "ipitem:item_check_on_fips" item.id %}' target="_blank">Посмотреть объект на сайте ФИПС</a> |
+     <a href='{% url "ipitem:item_prepare_letter" item.id %}' target="_blank">Подготовить письмо о продлении</a>|
+    <br><br>
+    {% endfor %}
+</div>
+<div id="index-wrapper"> 
+    <b><a href='{% url "ipitem:new_ip" %}' target="_blank">Добавить объект Интеллектуальной собственности</a></b>
+</div>
+<div id="form-wrapper-bottom">
+    <a href='{% url "profile:logout" %}'>Выйти</a>
+</div>
+<div id="form-wrapper-bottom">
+    <a href='{% url "profile:profile_delete" profile.id %}'>Удалить профиль пользователя</a>
+</div>
+<div id="form-wrapper-bottom">
+    <a href='{% url "profile:profile_edit" %}'>Редактировать профиль пользователя</a>
+</div>
+</section>
+</main>
+
+
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %} 
+
+    <!-- Main Section -->
+<main>
+    <div id='screen--wrapper-letter'>
+            <h3>Введите новый пароль</h3>
+            <p>Пожалуйста, введите новый пароль дважды, чтобы мы могли убедиться в правильности написания.</p>
+            <br>
+    </div>
+    <div id='screen--wrapper-letter'>
+            <form class="form" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Change my password" />
+            </form>
+    </div>
+</main>
+
+
+
+{% endblock content %} 

@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<!-- Main Section -->
+<main>
+<section id="screen--wrapper">
+<div id="form-wrapper">
+    <a href='{% url "profile:profile" %}'>Обратно в профиль пользователя</a>
+</div>
+<div id="index-wrapper"><b>Номер:</b> {{ item.number }}</div>
+<div id="index-wrapper"><b>Название:</b> {{ item.title }}</div>
+<div id="index-wrapper"><b>Тип объекта:</b> {{ type_of_item }}</div>
+{% load i18n %}
+{% language 'ru' %}
+<div id="index-wrapper"><b>Дата начала действия:</b> {{ item.initial_date }}</div>
+{% endlanguage %}
+<div id="index-wrapper"><b>Подписант:</b> {{ item.signatory }}</div>
+<div id="index-wrapper"><b>Описание пользователя к объекту:</b> {{ item.description }}</div>
+<div id="form-wrapper-reg"><a href='{% url "ipitem:edit_ip"  item.id %}'>Редактировать</a></div>
+<div id="form-wrapper-reg"><a href='{% url "ipitem:delete_ip" item.id %}'>Удалить</a></div>
+<div  id="form-wrapper-bottom">
+    <a href='{% url "profile:logout" %}'>Выйти</a>
+</div>
+</section>
+</main>
+
+
+{% endblock content %}
