@@ -1,8 +1,5 @@
 from pathlib import Path
 import os
-# Added for Heroku start
-import dj_database_url
-# Added for Heroku end
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,9 +13,6 @@ SECRET_KEY = 'django-insecure-q9^csgn!9xwr%atn1r-t^%b$$xxw_!i=vs3oh!k28%ffe#)&jx
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-# Added for Heroku start
-ALLOWED_HOSTS = ['fipsappheroku.herokuapp.com']
-# Added for Heroku end
 
 # Application definition
 
@@ -123,30 +117,16 @@ EMAIL_HOST_PASSWORD = 'ufqmlqcudncfedhj'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-# Added for Heroku start
-PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
-
-STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
-
-# Added for Heroku end
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    # was changed for Heroku from BASE_DIR / 'static' to:
-    os.path.join(PROJECT_ROOT, 'static'),
+    BASE_DIR / 'static'    
 ]
 
-# Added for Heroku start
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-# Added for Heroku end
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Added for Heroku start
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
-# Added for Heroku end
