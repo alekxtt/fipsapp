@@ -17,14 +17,16 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    'ipitem',
+    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ipitem.apps.IpitemConfig',
-    'user.apps.UserConfig',
+    #'ipitem.apps.IpitemConfig',
+    #'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -68,8 +70,12 @@ WSGI_APPLICATION = 'fipsapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'fipsapp', 
+        'USER': 'postgres', 
+        'PASSWORD': 'Sander66_33',
+        'HOST': '127.0.0.1', 
+        'PORT': '5432',
     }
 }
 
@@ -121,7 +127,7 @@ EMAIL_HOST_PASSWORD = 'ufqmlqcudncfedhj'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'    
+    BASE_DIR / 'static'
 ]
 
 

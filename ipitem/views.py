@@ -175,7 +175,6 @@ def send_email(ipitem, pk, period, date_for_sign, continue_of_letter):
         print("The files do not exist")
 
 
-
 def year_of_continue(pk):
     # рассчёт года продления патента
     ipitem = IpItem.objects.get(id=pk)
@@ -245,23 +244,6 @@ def item_prepare_letter(request, pk):
     }
     template = 'ipitem/ipitem_letter.html'
     send_email(ipitem, pk, period, date_for_sign, continue_of_letter)
-    return render(request, template, context)
-
-
-@login_required(login_url='profile:login')
-def item_prepare_letter_no_send_email(request, pk):
-    period, date_for_sign, continue_of_letter, ipitem = year_of_continue(pk)
-    context = {
-        'ipitem': ipitem,
-        'title': TITLE,
-        'address': ADDRESS,
-        'beginnig': BEGGINING_OF_LETTER_PATENT,
-        'continue': continue_of_letter,
-        'sign': SIGN,
-        'date_for_sign': date_for_sign,
-        'period': period,
-    }
-    template = 'ipitem/ipitem_letter.html'
     return render(request, template, context)
 
 
