@@ -11,14 +11,23 @@
   <form method='POST' action="{% url 'ipitem:edit_ip' ipitem.id %}">
     {% csrf_token %}
     {% for field in form %}
+    {% if field.label == 'Дата начала действия патента/товарного знака' %}
+    <div id="form-wrapper-reg">
+      <label for="formInput#text">{{form.initial_date.label}}</label>
+      <input type="date" name="initial_date" value="{{form.initial_date.value | date:'c'}}" id="id_initial_date">
+    </div>
+    {% else %}
     <div id="form-wrapper-reg">
       <label for="formInput#text">{{ field.label }} </label>
       {{ field }}
     </div>
+    {% endif %}
     {% endfor %}
-  </form>
+
+    
     <div id="form-wrapper-reg">
     <input type="submit" value="Подтвердить данные">
+  </form>
   </div>
   {% elif type_request == 'new' %}
   <form method='POST' action="{% url 'ipitem:new_ip' %}">

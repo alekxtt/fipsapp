@@ -51,6 +51,7 @@ def item_edit(request, pk):
         return redirect('profile:profile')
     template = 'ipitem/ipitem_form.html'
     form = IpItemForm(instance=ipitem)
+    print(form)
     if request.method == "POST":
         form = IpItemForm(request.POST, instance=ipitem)
         if form.is_valid():
